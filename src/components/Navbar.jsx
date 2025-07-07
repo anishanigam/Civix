@@ -76,7 +76,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Switch from '../DarkModeToggle';
-import {jwtDecode} from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
+
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -123,7 +124,10 @@ const Navbar = () => {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 dark:bg-[hsla(240,5%,15%,0.8)] backdrop-blur">
+
+    <header
+      className="sticky top-0 z-50 w-full border-b bg-white/95 dark:bg-[hsla(240,5%,15%,0.8)] backdrop-blur"
+    >
       <div className="container flex h-14 items-center justify-between">
         <button onClick={() => { setMobileMenuOpen(false); navigate('/'); }} className="flex items-center gap-2 hover:text-emerald-500 transition-colors duration-300">
           <svg
@@ -170,16 +174,10 @@ const Navbar = () => {
           </svg>
         </button>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 ml-8">
           <Switch />
-          {isAdmin && (
-            <button
-              onClick={() => navigate('/admin')}
-              className="hidden lg:inline-flex items-center justify-center rounded-md text-sm font-medium border border-emerald-500 text-emerald-600 hover:bg-emerald-50 h-9 px-4 py-2"
-            >
-              Admin Dashboard
-            </button>
-          )}
+
+
           <button
             onClick={() => navigate('/login')}
             className="hidden lg:inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
@@ -193,13 +191,24 @@ const Navbar = () => {
             Get Started
           </button>
         </div>
+ 
+       {isAdmin && (
+          <div className="ml-auto hidden lg:block">
+            <button
+              onClick={() => navigate('/admin')}
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-emerald-600 text-white hover:bg-emerald-700 h-9 px-4 py-2"
+            >
+              Admin Dashboard
+            </button>
+          </div>
+        )} 
       </div>
 
       {/* Mobile/Tablet menu overlay and panel */}
       {mobileMenuOpen && (
         <>
           {/* Dark overlay */}
-          <div 
+          <div
             className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm animate-fade-in"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
@@ -252,19 +261,20 @@ export default Navbar;
 
 
 
-// import React from 'react';
+
+{/* // import React from 'react';
 // import { useNavigate } from 'react-router-dom';
 // import Switch from '../DarkModeToggle';
 
-// const Navbar = () => {
-//   const navigate = useNavigate();
+// const Navbar = () => { */}
+{/* //   const navigate = useNavigate();
 
-//   const scrollToTop = () => {
+//   const scrollToTop = () => { */}
 //     window.scrollTo({ top: 0, behavior: 'smooth' });
 //   };
 
 //   return (
-//     <header 
+//     <header
 //       className="sticky top-0 z-50 w-full border-b bg-white/95 dark:bg-[hsla(240,5%,15%,0.8)] backdrop-blur"
 //       style={{
 //         '--tw-bg-opacity': '0.95',
